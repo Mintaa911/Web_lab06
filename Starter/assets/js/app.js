@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     taskDB.onsuccess = function(){
         console.log("indexedDB ready");
         DB = taskDB.result;
-        // displayTaskList();
+        displayTaskList();
     }
     taskDB.onerror = function(){
         console.log("Some error occured!");
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 li.appendChild(document.createTextNode(cursor.value.name));            // Create text node and append it 
                 const link = document.createElement('a');                        // Create new element for the link 
                 link.className = 'delete-item secondary-content';          // Add class and the x marker for a 
-                link.innerHTML = '<i class="fa fa-remove"> </i>';
+                link.innerHTML = `<i class="fa fa-remove"></i>  &nbsp;<a href="../edit.html?id=${cursor.value.id}"><i class="fa fa-edit"></i> </a> ;`;
                 li.appendChild(link);                                                    // Append link to li
                 taskList.appendChild(li);  
                 
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             }
         }
         
-        taskArray.sort(function(a,b){return a.id - b.id});
+        taskArray.sort(function(a,b){return a.name - b.name});
         taskList.innerHTML ="";
         for (let i = 0; i < taskArray.length; i++) {
             
@@ -152,8 +152,8 @@ document.addEventListener("DOMContentLoaded",()=>{
             li.appendChild(document.createTextNode(taskArray[i].name));            // Create text node and append it 
             const link = document.createElement('a');                        // Create new element for the link 
             link.className = 'delete-item secondary-content';          // Add class and the x marker for a 
-            link.innerHTML = '<i class="fa fa-remove"> </i>';
-            li.appendChild(link);                                                    // Append link to li
+            link.innerHTML = '<i class="fa fa-remove"></i>  &nbsp;<a href="../edit.html?id=${cursor.value.id}"><i class="fa fa-edit"></i> </a> ;';
+            li.appendChild(link);                                                       // Append link to li
             taskList.appendChild(li); 
         }
 
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 cursor.continue();
             }
         }
-        taskArray.sort(function(a,b){return b.id - a.id});
+        taskArray.sort(function(a,b){return b.name - a.name});
         
        
 
@@ -183,8 +183,8 @@ document.addEventListener("DOMContentLoaded",()=>{
             li.appendChild(document.createTextNode(taskArray[i].name));            // Create text node and append it 
             const link = document.createElement('a');                        // Create new element for the link 
             link.className = 'delete-item secondary-content';          // Add class and the x marker for a 
-            link.innerHTML = '<i class="fa fa-remove"> </i>';
-            li.appendChild(link);                                                    // Append link to li
+            link.innerHTML = '<i class="fa fa-remove"></i>  &nbsp;<a href="../edit.html?id=${cursor.value.id}"><i class="fa fa-edit"></i> </a> ;';
+            li.appendChild(link);                                                       // Append link to li
             taskList.appendChild(li); 
         }
     }
